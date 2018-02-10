@@ -9,7 +9,7 @@ Collaborators:
 
 Bhatnagar, Tarini : [Github Profile](https://github.com/tarinib)
 
-Guoxin, Alex: [Github Profile](https://github.com/alexguoxin)
+Guo, Xin (Alex): [Github Profile](https://github.com/alexguoxin)
 
 Nikel, Indiana: [Github Profile](https://github.com/indiana-nikel)
 
