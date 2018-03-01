@@ -1,6 +1,6 @@
 ## InstaR
 
-<img src="logo.png" width="200" align="right">
+![](img/logo.png)
 
 #### A Collaborative Software Development Project
 Date: February 9, 2018
@@ -15,27 +15,27 @@ Nikel, Indiana: [Github Profile](https://github.com/indiana-nikel)
 
 #### Overview
 
-According to a [study](http://comp.social.gatech.edu/papers/icwsm15.why.bakhshi.pdf) by Yahoo Labs, “Filtered photos are 21 percent more likely to be viewed and 45 percent more likely to be commented on. Have you ever wondered how you could transform your images using filters similar to Instagram in R? 
+According to a [study](http://comp.social.gatech.edu/papers/icwsm15.why.bakhshi.pdf) by Yahoo Labs, “Filtered photos are 21 percent more likely to be viewed and 45 percent more likely to be commented on. Have you ever wondered how you could transform your images using filters similar to Instagram in R?
 
 We present this package that performs digital image processing.  It encompasses functions ranging from transformations like a simple flip, playing with color hues (rgb2gray) to 2D convolutions using a simple kernel matrix to do some interesting things! We have started with quite basic but diverse functions and hope to advance and add more with time.
 
 #### Functions
 
-###### Gaussian blur 
+###### Gaussian blur
 This function performs convolution to de-emphasizes differences in adjacent pixel values. It has an averaging effect removing detail and noise resulting in blurring of the image.
 
 >Input: image.jpg/png
 >
 >Output: blurred_image.jpg/png
 
-###### Grayscale 
+###### Grayscale
 This function converts an RGB image to grayscale. "amount" defines the proportion of conversion, with 100% leading to a complete grayscale and a value of 0% does not change the image at all.
 
 >Input: image.jpg/png, amount
 >
 >Output: grayscale_image.jpg/png
 
-###### Flip 
+###### Flip
 This is a transformation function which flips the image either horizontally or vertically.
 
 >Input: image.jpg/png, direction
