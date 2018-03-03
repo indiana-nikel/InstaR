@@ -79,7 +79,7 @@ test_that("If user specifies something other than 'h' or 'v', it throws an error
 })
 
 
-test_that("Image flips correctly", {
+test_that("Image is flipped correctly", {
 
   expect_equal(flip(img_h,'h'),img_h_e)
   expect_equal(flip(img_v,'v'),img_v_e)
