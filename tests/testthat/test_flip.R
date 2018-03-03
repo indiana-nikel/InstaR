@@ -45,43 +45,43 @@ blue_inc <- c(0,0,-9)
 img_inc <- array(c(red_inc,green_inc,blue_inc),dim = c(3,3,3))
 
 #Flip image horizontally using function
-flip_h <- flip(img,'h')
+flip_h <- flip(img, direction='h')
 
 #Flip image vertically using function
-flip_v <- flip(img,'v')
+flip_v <- flip(img, direction='v')
 
 test_that("In case the input is not an image", {
 
-  expect_error(flip(list(img_h),'h'))
-  expect_error(flip("img_h.pdf",'h'))
+  expect_error(flip(list(img_h), direction='h'))
+  expect_error(flip("img_h.pdf", direction='h'))
 
 })
 
 
 test_that("In case the image matrix is missing R/G/B channel", {
 
-  expect_error(flip(img_missing,'h'))
+  expect_error(flip(img_missing,direction='h'))
 
 })
 
 
 test_that("In case the intensity values are nt in range of 0-255", {
 
-  expect_error(flip(img_intensity,'h'))
+  expect_error(flip(img_intensity,direction='h'))
 
 })
 
 
 test_that("If user specifies something other than 'h' or 'v', it throws an error", {
 
-  expect_error(flip(img_h,'s'))
+  expect_error(flip(img_h,direction='s'))
 
 })
 
 
 test_that("Image is flipped correctly", {
 
-  expect_equal(flip(img_h,'h'),img_h_e)
-  expect_equal(flip(img_v,'v'),img_v_e)
+  expect_equal(flip(img_h, direction='h'),img_h_e)
+  expect_equal(flip(img_v, direction='v'),img_v_e)
 
 })
