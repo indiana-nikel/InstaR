@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 
-# This script tests the function greyscale()
+# This script tests the greyscale() function
 
 library(InstaR)
 context("Greyscale image")
@@ -51,7 +51,7 @@ test_that("color image converted to greyscale", {
 })
 
 # input: greyscale image 2
-input1 <- array(c(c(10,20,30,
+input2 <- array(c(c(10,20,30,
                     40,50,60,
                     70,80,90),   #R values
                   c(10,20,30,
@@ -63,7 +63,7 @@ input1 <- array(c(c(10,20,30,
                 dim = c(3,3,3))
 
 # expected output: identical greyscale image 2
-exp_output1 <- array(c(c(10,20,30,
+exp_output2 <- array(c(c(10,20,30,
                          40,50,60,
                          70,80,90),   #R values
                        c(10,20,30,
