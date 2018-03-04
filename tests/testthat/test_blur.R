@@ -35,7 +35,7 @@ input1 <- array(c(c(10, 20, 30, 40, 50,
                     250, 210, 220, 230, 240)),  #B values
                 dim = c(5,5,3))
 
-# expected output: greyscale image 1
+# expected output: blur image 1
 exp_output1 <- array(c(c(30, 34.4444, 33.3333,
                          34.4444, 33.3333, 26.6666,
                          33.3333, 26.6666, 25.5555),   #R values
