@@ -33,11 +33,6 @@ c2_v_e <- c(255,255,255)
 c3_v_e <- c(0,0,255)
 img_v_e <- array(c(c1_v_e,c2_v_e,c3_v_e),dim = c(3,3,1))
 
-#Define test image with missing values
-c1_missing <- c(0,0,255)
-c2_missing <- c(255,255,255)
-img_missing <- array(c(c1_missing,c2_missing),dim = c(3,2,1))
-
 #Define test image with incorrect RGB values
 c1_inc <- c(0,0,301)
 c2_inc <- c(255,255,255)
@@ -58,14 +53,7 @@ test_that("In case the input is not an image", {
 })
 
 
-test_that("In case the image matrix is missing R/G/B channel", {
-
-  expect_error(flip(img_missing,direction='h'))
-
-})
-
-
-test_that("In case the intensity values are nt in range of 0-255", {
+test_that("In case the intensity values are not in range of 0-255", {
 
   expect_error(flip(img_intensity,direction='h'))
 
