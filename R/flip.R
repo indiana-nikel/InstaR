@@ -6,7 +6,7 @@
 # March 2018
 # This script the function for flip.R.
 
-library(InstaR)
+
 
 flip <- function(X, direction) {
   return(NULL)
