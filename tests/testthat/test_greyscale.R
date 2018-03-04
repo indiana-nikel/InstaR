@@ -14,13 +14,18 @@
 
 # This script tests the greyscale() function
 
-library(InstaR)
-context("Greyscale image")
+# greyscale() function converts a color image into greyscale
+# Input: string of path for an image file in .jpg, .jpeg, .png, .tiff format
+# Output: an image file in .jpg, .jpeg, .png, .tiff format
 
 # Essentially, both the input and output of the greyscale function are images.
 # But the function will convert the image into a matrix contaning RGB values, and just perform matrix manipulation.
 # Therefore, for test purposes, the input and output of the test function will just be matrices to test
 # if the matrix manipulation works as expected.
+
+
+library(InstaR)
+context("Greyscale image")
 
 # input color: image 1
 input1 <- array(c(c(10,20,40,
@@ -76,4 +81,13 @@ exp_output2 <- array(c(c(10,20,30,
 
 test_that("greyscale image remains greyscale", {
   expect_equal(greyscale(input2), exp_output2)
+})
+
+test_that("In case the input is not an image", {
+  expect_error(greyscale(c(1,2,3)))
+  expect_error(greyscale("img.pdf"))
+})
+
+test_that("If user specifies additional arguments, it throws an error", {
+  expect_error(greyscale(input1, "abc"))
 })
