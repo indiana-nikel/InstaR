@@ -34,10 +34,10 @@ c3_v_e <- c(0,0,255)
 img_v_e <- array(c(c1_v_e,c2_v_e,c3_v_e),dim = c(3,3,1))
 
 #Define test image with incorrect RGB values
-c1_inc <- c(0,0,301)
-c2_inc <- c(255,255,255)
-c3_inc <- c(0,0,-9)
-img_inc <- array(c(c1_inc,c2_inc,c3_inc),dim = c(3,3,1))
+c1_intensity <- c(0,0,301)
+c2_intensity <- c(255,255,255)
+c3_intensity <- c(0,0,-9)
+img_intensity <- array(c(c1_intensity,c2_intensity,c3_intensity),dim = c(3,3,1))
 
 #Flip image horizontally using function
 flip_h <- flip(img, direction='h')
