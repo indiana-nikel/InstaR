@@ -10,39 +10,39 @@ library(InstaR)
 context('Flip image')
 
 #Define test image for horizontal flip
-red_h <- c(255,255,255)
-green_h <- c(0,255,0)
-blue_h <- c(0,255,0)
-img_h <- array(c(red_h,green_h,blue_h),dim = c(3,3,3))
+c1_h <- c(255,255,255)
+c2_h <- c(0,255,0)
+c3_h <- c(0,255,0)
+img_h <- array(c(c1_h,c2_h,c3_h),dim = c(3,3,1))
 
 #Define test image for vertical flip
-red_v <- c(255,0,0)
-green_v <- c(255,255,255)
-blue_v <- c(255,0,0)
-img_v <- array(c(red_v,green_v,blue_v),dim = c(3,3,3))
+c1_v <- c(255,0,0)
+c2_v <- c(255,255,255)
+c3_v <- c(255,0,0)
+img_v <- array(c(c1_v,c2_v,c3_v),dim = c(3,3,1))
 
 #Expected image matrix for horizontal flip
-red_h_e <- c(0,255,0)
-green_h_e <- c(0,255,0)
-blue_h_e <- c(255,255,255)
-img_h_e <- array(c(red_h_e,green_h_e,blue_h_e),dim = c(3,3,3))
+c1_h_e <- c(0,255,0)
+c2_h_e <- c(0,255,0)
+c3_h_e <- c(255,255,255)
+img_h_e <- array(c(c1_h_e,c2_h_e,c3_h_e),dim = c(3,3,1))
 
 #Expected image matrix for vertical flip
-red_v_e <- c(0,0,255)
-green_v_e <- c(255,255,255)
-blue_v_e <- c(0,0,255)
-img_v_e <- array(c(red_v_e,green_v_e,blue_v_e),dim = c(3,3,3))
+c1_v_e <- c(0,0,255)
+c2_v_e <- c(255,255,255)
+c3_v_e <- c(0,0,255)
+img_v_e <- array(c(c1_v_e,c2_v_e,c3_v_e),dim = c(3,3,1))
 
-#Define test image with missing R/G/B channel
-red_missing <- c(0,0,255)
-green_missing <- c(255,255,255)
-img_missing <- array(c(red_missing,green_missing),dim = c(3,3,2))
+#Define test image with missing values
+c1_missing <- c(0,0,255)
+c2_missing <- c(255,255,255)
+img_missing <- array(c(c1_missing,c2_missing),dim = c(3,2,1))
 
 #Define test image with incorrect RGB values
-red_inc <- c(0,0,301)
-green_inc <- c(255,255,255)
-blue_inc <- c(0,0,-9)
-img_inc <- array(c(red_inc,green_inc,blue_inc),dim = c(3,3,3))
+c1_inc <- c(0,0,301)
+c2_inc <- c(255,255,255)
+c3_inc <- c(0,0,-9)
+img_inc <- array(c(c1_inc,c2_inc,c3_inc),dim = c(3,3,1))
 
 #Flip image horizontally using function
 flip_h <- flip(img, direction='h')
