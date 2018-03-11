@@ -6,63 +6,102 @@
 # March 2018
 # This script tests the function from flip.R.
 
-library(InstaR)
+library("InstaR")
+library("jpeg")
+library("OpenImageR")
 context('Flip image')
 
-#Define test image for horizontal flip
-c1_h <- c(255,255,255)
-c2_h <- c(0,255,0)
-c3_h <- c(0,255,0)
-img_h <- array(c(c1_h,c2_h,c3_h),dim = c(3,3,1))
+#Define 3D (RGB channel)test image for horizontal flip
 
-#Define test image for vertical flip
-c1_v <- c(255,0,0)
-c2_v <- c(255,255,255)
-c3_v <- c(255,0,0)
-img_v <- array(c(c1_v,c2_v,c3_v),dim = c(3,3,1))
+c1_h <- c(0.5,0.5,0.5)
+c2_h <- c(0,0.5,0)
+c3_h <- c(0,0.5,0)
+c4_h <- c(0.5,0.5,0.5)
+c5_h <- c(0,0.5,0)
+c6_h <- c(0,0.5,0)
+c7_h <- c(0.5,0.5,0.5)
+c8_h <- c(0,0.5,0)
+c9_h <- c(0,0.5,0)
+img_h_mat <- array(c(c1_h,c2_h,c3_h,c4_h,c5_h,c6_h,c7_h,c8_h,c9_h),dim = c(3,3,3))
+writeJPEG(img_h_mat,"img/img_horiz.jpg", quality=1)
 
-#Expected image matrix for horizontal flip
-c1_h_e <- c(0,255,0)
-c2_h_e <- c(0,255,0)
-c3_h_e <- c(255,255,255)
-img_h_e <- array(c(c1_h_e,c2_h_e,c3_h_e),dim = c(3,3,1))
+#Define 3D (RGB channel)test image for vertical flip
 
-#Expected image matrix for vertical flip
-c1_v_e <- c(0,0,255)
-c2_v_e <- c(255,255,255)
-c3_v_e <- c(0,0,255)
-img_v_e <- array(c(c1_v_e,c2_v_e,c3_v_e),dim = c(3,3,1))
+c1_v <- c(0.5,0,0)
+c2_v <- c(0.5,0.5,0.5)
+c3_v <- c(0.5,0,0)
+c4_v <- c(0.5,0,0)
+c5_v <- c(0.5,0.5,0.5)
+c6_v <- c(0.5,0,0)
+c7_v <- c(0.5,0,0)
+c8_v <- c(0.5,0.5,0.5)
+c9_v <- c(0.5,0,0)
+img_v_mat <- array(c(c1_v,c2_v,c3_v,c4_v,c5_v,c6_v,c7_v,c8_v,c9_v),dim = c(3,3,3))
+writeJPEG(img_v_mat,"img/img_vert.jpg", quality=1)
 
-#Define test image with incorrect RGB values
-c1_intensity <- c(0,0,301)
-c2_intensity <- c(255,255,255)
-c3_intensity <- c(0,0,-9)
-img_intensity <- array(c(c1_intensity,c2_intensity,c3_intensity),dim = c(3,3,1))
+#Expected 3D (RGB channel)test image for horizontal flip
+
+c1_h_exp <- c(0,0.5,0)
+c2_h_exp <- c(0,0.5,0)
+c3_h_exp <- c(0.5,0.5,0.5)
+c4_h_exp <- c(0,0.5,0)
+c5_h_exp <- c(0,0.5,0)
+c6_h_exp <- c(0.5,0.5,0.5)
+c7_h_exp <- c(0,0.5,0)
+c8_h_exp <- c(0,0.5,0)
+c9_h_exp <- c(0.5,0.5,0.5)
+img_h_mat_exp <- array(c(c1_h_exp,c2_h_exp,c3_h_exp,c4_h_exp,c5_h_exp,c6_h_exp,c7_h_exp,c8_h_exp,c9_h_exp),dim = c(3,3,3))
+writeJPEG(img_h_mat_exp,"img/img_horiz_exp.jpg", quality=1)
+
+#Expected 3D (RGB channel)test image for vertical flip
+
+c1_v_exp <- c(0,0,0.5)
+c2_v_exp  <- c(0.5,0.5,0.5)
+c3_v_exp  <- c(0,0,0.5)
+c4_v_exp  <- c(0,0,0.5)
+c5_v_exp  <- c(0.5,0.5,0.5)
+c6_v_exp  <- c(0,0,0.5)
+c7_v_exp  <- c(0,0,0.5)
+c8_v_exp  <- c(0.5,0.5,0.5)
+c9_v_exp  <- c(0,0,0.5)
+img_v_mat_exp  <- array(c(c1_v_exp ,c2_v_exp ,c3_v_exp ,c4_v_exp ,c5_v_exp ,c6_v_exp ,c7_v_exp ,c8_v_exp ,c9_v_exp ),dim = c(3,3,3))
+writeJPEG(img_v_mat_exp ,"img/img_vert_exp.jpg", quality=1)
+
+#Test function
+
+#Read jpg file that was created using 3D matrix above
+img_horiz <- readImage("img/img_horiz.jpg")
+img_vert <- readImage("img/img_vert.jpg")
+
+#Read jpg file that is expected from the function
+img_horiz_exp <- readImage("img/img_horiz_exp.jpg")
+img_vert_exp <- readImage("img/img_vert_exp.jpg")
+
 
 #Flip image horizontally using function
-flip_h <- flip(img, direction='h')
+flip_horiz <- flip(img_horiz, "h")
 
 #Flip image vertically using function
-flip_v <- flip(img, direction='v')
+flip_vert <- flip(img_vert, "v")
 
 test_that("In case the input is not an image", {
 
-  expect_error(flip(list(img_h), direction='h'))
-  expect_error(flip("img_h.pdf", direction='h'))
+  expect_error(flip(list(img_h), "h"))
+  expect_error(flip("img_h.pdf", "h"))
 
 })
 
 
 test_that("If user specifies something other than 'h' or 'v', it throws an error", {
 
-  expect_error(flip(img_h,direction='s'))
+  expect_error(flip(img_h,"s"))
 
 })
 
 
 test_that("Image is flipped correctly", {
 
-  expect_equal(flip(img_h, direction='h'),img_h_e)
-  expect_equal(flip(img_v, direction='v'),img_v_e)
+  expect_equal(flip(img_horiz, direction='h'),img_horiz_exp)
+  expect_equal(flip(img_vert, direction='v'),img_vert_exp)
 
 })
