@@ -44,6 +44,8 @@ flip <- function(img_path, direction) {
     output_r_mat <- input_r_mat[dim(input_r_mat)[1L]:1,]
     output_g_mat <- input_g_mat[dim(input_g_mat)[1L]:1,]
     output_b_mat <- input_b_mat[dim(input_b_mat)[1L]:1,]
+  } else {
+    break
   }
 
   #Combining 3 RGB channel matrices into a single #D matrix

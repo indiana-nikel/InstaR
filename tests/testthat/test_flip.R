@@ -6,7 +6,7 @@
 # March 2018
 # This script tests the function from flip.R.
 
-library("InstaR")
+#library("InstaR")
 library("jpeg")
 library("OpenImageR")
 context('Flip image')
@@ -23,7 +23,7 @@ c7_h <- c(0.5,0.5,0.5)
 c8_h <- c(0,0.5,0)
 c9_h <- c(0,0.5,0)
 img_h_mat <- array(c(c1_h,c2_h,c3_h,c4_h,c5_h,c6_h,c7_h,c8_h,c9_h),dim = c(3,3,3))
-writeJPEG(img_h_mat,"img/img_horiz.jpg", quality=1)
+writeJPEG(img_h_mat,"img_horiz.jpg", quality=1)
 
 #Define 3D (RGB channel)test image for vertical flip
 
@@ -37,7 +37,7 @@ c7_v <- c(0.5,0,0)
 c8_v <- c(0.5,0.5,0.5)
 c9_v <- c(0.5,0,0)
 img_v_mat <- array(c(c1_v,c2_v,c3_v,c4_v,c5_v,c6_v,c7_v,c8_v,c9_v),dim = c(3,3,3))
-writeJPEG(img_v_mat,"img/img_vert.jpg", quality=1)
+writeJPEG(img_v_mat,"img_vert.jpg", quality=1)
 
 #Expected 3D (RGB channel)test image for horizontal flip
 
@@ -51,7 +51,7 @@ c7_h_exp <- c(0,0.5,0)
 c8_h_exp <- c(0,0.5,0)
 c9_h_exp <- c(0.5,0.5,0.5)
 img_h_mat_exp <- array(c(c1_h_exp,c2_h_exp,c3_h_exp,c4_h_exp,c5_h_exp,c6_h_exp,c7_h_exp,c8_h_exp,c9_h_exp),dim = c(3,3,3))
-writeJPEG(img_h_mat_exp,"img/img_horiz_exp.jpg", quality=1)
+writeJPEG(img_h_mat_exp,"img_horiz_exp.jpg", quality=1)
 
 #Expected 3D (RGB channel)test image for vertical flip
 
@@ -65,43 +65,42 @@ c7_v_exp  <- c(0,0,0.5)
 c8_v_exp  <- c(0.5,0.5,0.5)
 c9_v_exp  <- c(0,0,0.5)
 img_v_mat_exp  <- array(c(c1_v_exp ,c2_v_exp ,c3_v_exp ,c4_v_exp ,c5_v_exp ,c6_v_exp ,c7_v_exp ,c8_v_exp ,c9_v_exp ),dim = c(3,3,3))
-writeJPEG(img_v_mat_exp ,"img/img_vert_exp.jpg", quality=1)
+writeJPEG(img_v_mat_exp ,"img_vert_exp.jpg", quality=1)
 
 #Test function
 
 #Read jpg file that was created using 3D matrix above
-img_horiz <- readImage("img/img_horiz.jpg")
-img_vert <- readImage("img/img_vert.jpg")
+#img_horiz <- readImage("tests/testthat/img_horiz")
+#img_vert <- readImage("tests/testthat/img_vert.jpg")
 
 #Read jpg file that is expected from the function
-img_horiz_exp <- readImage("img/img_horiz_exp.jpg")
-img_vert_exp <- readImage("img/img_vert_exp.jpg")
-
+#img_horiz_exp <- readImage("tests/testthat/img_horiz_exp.jpg")
+#img_vert_exp <- readImage("tests/testthat/img_vert_exp.jpg")
 
 #Flip image horizontally using function
-flip_horiz <- flip(img_horiz, "h")
+#flip_horiz <- flip(readImage("tests/testthat/img_horiz.jpg"), "h")
 
 #Flip image vertically using function
-flip_vert <- flip(img_vert, "v")
+#flip_vert <- flip(readImage("tests/testthat/img_vert.jpg"), "v")
 
-test_that("In case the input is not an image", {
+#test_that("In case the input is not an image", {
 
-  expect_error(flip(list(img_h), "h"))
-  expect_error(flip("img_h.pdf", "h"))
+  #expect_error(flip(list(img_h), "h"))
+  #expect_error(flip("img_h.pdf", "h"))
 
-})
+#})
 
 
 test_that("If user specifies something other than 'h' or 'v', it throws an error", {
 
-  expect_error(flip(img_h,"s"))
+  expect_error(flip("tests/testthat/img_horiz.jpg","s"))
 
 })
 
 
 test_that("Image is flipped correctly", {
 
-  expect_equal(flip(img_horiz, direction='h'),img_horiz_exp)
-  expect_equal(flip(img_vert, direction='v'),img_vert_exp)
+  expect_equal(flip("tests/testthat/img_horiz.jpg", "h"),"tests/testthat/img_horiz_exp.jpg")
+  expect_equal(flip("tests/testthat/img_vert.jpg", "v"),"tests/testthat/img_vert_exp.jpg")
 
 })

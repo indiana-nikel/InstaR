@@ -21,21 +21,24 @@ We present this package that performs digital image processing.  It encompasses 
 
 #### Functions
 
-###### Gaussian blur
+```blur```
+
 This function performs convolution to de-emphasizes differences in adjacent pixel values. It has an averaging effect removing detail and noise resulting in blurring of the image.
 
 >Input: image.jpg/png
 >
 >Output: blurred_image.jpg/png
 
-###### Grayscale
-This function converts an RGB image to grayscale. "amount" defines the proportion of conversion, with 100% leading to a complete grayscale and a value of 0% does not change the image at all.
+```greyscale```
+
+This function converts an RGB image to greyscale. "amount" defines the proportion of conversion, with 100% leading to a complete grayscale and a value of 0% does not change the image at all.
 
 >Input: image.jpg/png, amount
 >
->Output: grayscale_image.jpg/png
+>Output: greyscale_image.jpg/png
 
-###### Flip
+```flip```
+
 This is a transformation function which flips the image either horizontally or vertically.
 
 >Input: image.jpg/png, direction
@@ -45,3 +48,49 @@ This is a transformation function which flips the image either horizontally or v
 
 #### R ecosystem
 "A picture paints a thousand words", however, a well-constructed image speaks even more than that without having to rely on a written description. We want to explore the elements of filters and their implementation in R. A similar package called ["magick"](https://cran.r-project.org/web/packages/magick/index.html)  exists in R which has standard filters like blur, sobel among others. We have started with a few basic functions but want to work towards building more advanced filters similar to the ones provided by Instagram.
+
+#### Installation
+
+To install InstaPy, follow these instructions:
+
+1. Please check if ```devtools``` has been installed. If not, open the console and input the following: install.packages("devtools") to install devtools from CRAN. Also, check the package dependencies down below.
+2. Input the following into the console: ```devtools::install_github("UBC-MDS/Karl")```
+3. You are all set to use go!
+
+#### Usage
+
+```library(InstaPy)```
+
+1.```flip(img_path,direction,output_path```
+
+Aruguments:
+
+* ```img_path```: path to input image
+* ```direction```: direction of flip. "h" (horizontal) or "v"(vertical)
+* ```output_path```: path to output image
+* Example: ```flip("./img.jpg", "h","./img_flip.jpg")```
+
+2.```greyscale(img_path, output_path)```
+
+Aruguments:
+
+* ```img_path```: path to input image
+* ```output_path```: path to output image
+* Example: ```greyscale("./img.jpg", "./img_gs.jpg")```
+
+3.```blur(img_path, output_path)```
+
+Aruguments:
+
+* ```img_path```: path to input image
+* ```output_path```: path to output image
+* Example: ```blur("./img.jpg", "./img_blur.jpg")```
+
+
+#### Package dependencies
+
+Packages: 
+
+```openImageR```
+
+```tableMatrix```
