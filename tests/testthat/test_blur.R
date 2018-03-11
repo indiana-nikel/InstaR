@@ -14,6 +14,7 @@
 
 # This script tests the blur() function
 
+library(OpenImageR)
 library(InstaR)
 context("Blur image")
 
@@ -34,6 +35,8 @@ input1 <- array(c(c(10, 20, 30, 40, 50,
                     240, 250, 210, 220, 230,
                     250, 210, 220, 230, 240)),  #B values
                 dim = c(5,5,3))
+
+writeImage(input1, "input1.jpg")
 
 # expected output: blur image 1
 exp_output1 <- array(c(c(30, 34.4444, 33.3333,
@@ -76,7 +79,8 @@ test_that("If user specifies an additional argument, it throws an error", {
 })
 
 test_that("color image blurred", {
-
-  expect_equal(blur(input1), exp_output1)
+  blur(input1.jpg)
+  output <- readImage("blur.jpg")
+  expect_equal(output, exp_output1)
 
 })
