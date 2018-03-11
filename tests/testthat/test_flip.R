@@ -53,13 +53,6 @@ test_that("In case the input is not an image", {
 })
 
 
-test_that("In case the intensity values are not in range of 0-255", {
-
-  expect_error(flip(img_intensity,direction='h'))
-
-})
-
-
 test_that("If user specifies something other than 'h' or 'v', it throws an error", {
 
   expect_error(flip(img_h,direction='s'))
