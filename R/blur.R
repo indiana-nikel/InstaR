@@ -23,4 +23,51 @@
 #'
 #' @examples
 #' blur("./img.jpg")
-blur <- function(img) {}
+
+library("OpenImageR")
+
+blur <- function(img) {
+    
+    input <- readImage(img)
+    output <- input[1:(length(input[1,,1])-2), 1:(length(input[,1,1])-2),]
+    
+    for (i in c(3:length(input[1,,1])-1)) {
+        for (j in c(3:length(input[1,,1])-1)) {
+            
+            R <- c(input[i-1,j-1,1],
+            input[i-1,j,1],
+            input[i-1,j+1,1],
+            input[i,j-1,1],
+            input[i,j,1],
+            input[i,j+1,1],
+            input[i+1,j-1,1],
+            input[i+1,j,1],
+            input[i+1,j+1,1])
+            
+            G <- c(input[i-1,j-1,2],
+            input[i-1,j,2],
+            input[i-1,j+1,2],
+            input[i,j-1,2],
+            input[i,j,2],
+            input[i,j+1,2],
+            input[i+1,j-1,2],
+            input[i+1,j,2],
+            input[i+1,j+1,2])
+            
+            B <- c(input[i-1,j-1,3],
+            input[i-1,j,3],
+            input[i-1,j+1,3],
+            input[i,j-1,3],
+            input[i,j,3],
+            input[i,j+1,3],
+            input[i+1,j-1,3],
+            input[i+1,j,3],
+            input[i+1,j+1,3])
+            
+            output[i-1,j-1,1] <- sum(R)/9
+            output[i-1,j-1,2] <- sum(G)/9
+            output[i-1,j-1,3] <- sum(B)/9
+        }
+    }
+    writeImage(output, "blur.jpg")
+}
