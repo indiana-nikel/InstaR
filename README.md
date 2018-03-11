@@ -54,12 +54,12 @@ This is a transformation function which flips the image either horizontally or v
 To install InstaPy, follow these instructions:
 
 1. Please check if ```devtools``` has been installed. If not, open the console and input the following: install.packages("devtools") to install devtools from CRAN. Also, check the package dependencies down below.
-2. Input the following into the console: ```devtools::install_github("UBC-MDS/Karl")```
+2. Input the following into the console: ```devtools::install_github("UBC-MDS/InstaR")```
 3. You are all set to use go!
 
 #### Usage
 
-```library(InstaPy)```
+```library(InstaR)```
 
 1.```flip(img_path,direction,output_path```
 
