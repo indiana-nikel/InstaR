@@ -9,7 +9,7 @@
 library("OpenImageR")
 library("tableMatrix")
 
-flip <- function(img_path, direction) {
+flip <- function(img_path, direction, output_path) {
 
   #Reading image file as matrix
   input_mat <- readImage(img_path)
@@ -54,6 +54,6 @@ flip <- function(img_path, direction) {
   #Display flipped image
   imageShow(output_mat)
   #Save flipped image
-  dev.copy(jpeg,filename="flip.jpg");
+  dev.copy(jpeg,filename=output_path);
   dev.off ();
 }
