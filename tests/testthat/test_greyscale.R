@@ -14,16 +14,13 @@
 
 # This script tests the greyscale() function
 
-# greyscale() function converts a color image into greyscale
-# Input: string of path for an image file in .jpg, .jpeg, .png, .tiff format
-# Output: an image file in .jpg, .jpeg, .png, .tiff format
-
-# Essentially, both the input and output of the greyscale function are images.
-# But the function will convert the image into a matrix contaning RGB values, and just perform matrix manipulation.
-# Therefore, for test purposes, the input and output of the test function will just be matrices to test
-# if the matrix manipulation works as expected.
+# greyscale(input_path, output_path) converts a color image into greyscale
+# Input: input_path: string, path for the input image file
+#        output_path: string, path for the output image file
+# Output: an image file at the specified output path
 
 
+library(OpenImageR)
 library(InstaR)
 context("Greyscale image")
 
@@ -40,19 +37,24 @@ input1 <- array(c(c(10,20,40,
                 dim = c(3,3,3))
 
 # expected output: greyscale image 1
-exp_output1 <- array(c(c(18.1,36.2,72.4,
-                         36.2,72.4,18.1,
-                         72.4,18.1,36.2),   #R values
-                       c(18.1,36.2,72.4,
-                         36.2,72.4,18.1,
-                         72.4,18.1,36.2),   #G values
-                       c(18.1,36.2,72.4,
-                         36.2,72.4,18.1,
-                         72.4,18.1,36.2)),  #B values
+exp_output1 <- array(c(c(18,36,72,
+                         36,72,18,
+                         72,18,36),   #R values
+                       c(18,36,72,
+                         36,72,18,
+                         72,18,36),   #G values
+                       c(18,36,72,
+                         36,72,18,
+                         72,18,36)),  #B values
                       dim = c(3,3,3))
 
+writeImage(input1, "/tests/testthat/test_img/greyscale/input1.jpg")
+
 test_that("color image converted to greyscale", {
-  expect_equal(greyscale(input1), exp_output1)
+  greyscale("/tests/testthat/test_img/greyscale/input1.jpg",
+            "/tests/testthat/test_img/greyscale/input1_gs.jpg")
+  output = readImage("/tests/testthat/test_img/greyscale/input1_gs.jpg")
+  expect_equal(output, exp_output1)
 })
 
 # input: greyscale image 2
@@ -79,15 +81,25 @@ exp_output2 <- array(c(c(10,20,30,
                          70,80,90)),  #B values
                      dim = c(3,3,3))
 
+writeImage(input2, "/tests/testthat/test_img/greyscale/input2.jpg")
+
 test_that("greyscale image remains greyscale", {
-  expect_equal(greyscale(input2), exp_output2)
+  greyscale("/tests/testthat/test_img/greyscale/input2.jpg",
+            "/tests/testthat/test_img/greyscale/input2_gs.jpg")
+  output = readImage("/tests/testthat/test_img/greyscale/input2_gs.jpg")
+  expect_equal(output, exp_output2)
 })
 
 test_that("In case the input is not an image", {
-  expect_error(greyscale(c(1,2,3)))
-  expect_error(greyscale("img.pdf"))
+  expect_error(greyscale(c(1,2,3), 456))
+  expect_error(greyscale("/tests/testthat/test_img/greyscale/test.pdf",
+                         "/tests/testthat/test_img/greyscale/input1_gs.jpg"))
 })
 
 test_that("If user specifies additional arguments, it throws an error", {
-  expect_error(greyscale(input1, "abc"))
+  expect_error(greyscale("/tests/testthat/test_img/greyscale/input1.jpg",
+                         "/tests/testthat/test_img/greyscale/input1_gs.jpg",
+                         "abc"))
 })
+
+# All test passed when running them manually, but failed when do auto testing. We will investigate it next week.

@@ -1,0 +1,29 @@
+---
+title: "Greyscale"
+author: "Xin (Alex) Guo"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+greyscale(input_path, output_path) converts a color image into greyscale.
+
+- Input: 
+    - input_path: string, path for the input image file
+    - output_path: string, path for the output image file
+  
+- Output: an image file at the specified output path
+
+- Example: `greyscale("./img.jpg", "./img_gs.jpg")`
+
+
