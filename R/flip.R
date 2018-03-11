@@ -12,7 +12,7 @@ library("tableMatrix")
 flip <- function(img_path, direction) {
 
   #Reading image file as matrix
-  input_mat <- readImage("/Users/Tarini/Documents/InstaR/R/finger.jpg")
+  input_mat <- readImage(img_path)
 
   #Creating variables to facilitate division of image into 3 RGB channels
   div1 <- length(input_mat)/3
@@ -55,7 +55,3 @@ flip <- function(img_path, direction) {
   dev.copy(jpeg,filename="flip.jpg");
   dev.off ();
 }
-
-
-imageShow(input_mat)
-imageShow(output_mat)
