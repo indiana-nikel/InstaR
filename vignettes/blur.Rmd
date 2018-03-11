@@ -1,0 +1,26 @@
+---
+title: "Blue"
+author: "Indiana Nikel"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+blur(image_path) blurs an image.
+
+- Input:
+    - Image_path: string, path for the input image file
+
+- Output: an image file called "blur.jpg" at the current working directory.
+
+- Example: `blur("img1.jpg")`
