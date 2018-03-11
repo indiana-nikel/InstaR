@@ -6,7 +6,7 @@
 # March 2018
 # This script tests the function from flip.R.
 
-#library("InstaR")
+library("InstaR")
 library("jpeg")
 library("OpenImageR")
 context('Flip image')
@@ -69,26 +69,18 @@ writeJPEG(img_v_mat_exp ,"img_vert_exp.jpg", quality=1)
 
 #Test function
 
-#Read jpg file that was created using 3D matrix above
-#img_horiz <- readImage("tests/testthat/img_horiz")
-#img_vert <- readImage("tests/testthat/img_vert.jpg")
-
-#Read jpg file that is expected from the function
-#img_horiz_exp <- readImage("tests/testthat/img_horiz_exp.jpg")
-#img_vert_exp <- readImage("tests/testthat/img_vert_exp.jpg")
-
 #Flip image horizontally using function
-#flip_horiz <- flip(readImage("tests/testthat/img_horiz.jpg"), "h")
+flip_horiz <- flip(readImage("tests/testthat/img_horiz.jpg"), "h", "tests/testthat/img_horiz_exp.jpg")
 
 #Flip image vertically using function
-#flip_vert <- flip(readImage("tests/testthat/img_vert.jpg"), "v")
+flip_vert <- flip(readImage("tests/testthat/img_vert.jpg"), "v","tests/testthat/img_vert_exp.jpg")
 
-#test_that("In case the input is not an image", {
+test_that("In case the input is not an image", {
 
-  #expect_error(flip(list(img_h), "h"))
-  #expect_error(flip("img_h.pdf", "h"))
+  expect_error(flip(list(img_h), "h"))
+  expect_error(flip("img_h.pdf", "h"))
 
-#})
+})
 
 
 test_that("If user specifies something other than 'h' or 'v', it throws an error", {
@@ -104,3 +96,6 @@ test_that("Image is flipped correctly", {
   expect_equal(flip("tests/testthat/img_vert.jpg", "v"),"tests/testthat/img_vert_exp.jpg")
 
 })
+
+##Please note: We have not been able to pass our tests of functions successfully due to some
+##issue with readJPEG and writeJPEG. The code workd perfectly fine manually. We hope to fix it soon.

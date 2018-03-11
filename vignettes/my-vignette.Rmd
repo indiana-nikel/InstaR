@@ -1,0 +1,35 @@
+---
+title: "flip function"
+author: "Tarini Bhatnagar"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Description
+
+We present this package, InstaR, that performs digital image processing. It encompasses functions ranging from transformations like a simple flip, playing with color hues (rgb2gray) to 2D convolutions using a simple kernel matrix to do some interesting things! We have started with quite basic but diverse functions and hope to advance and add more with time.
+
+## flip function
+This is a transformation function which flips the image either horizontally or vertically.
+
+``flip(img_path,direction,output_path```
+
+Aruguments:
+
+```img_path```: path to input image
+```direction```: direction of flip. "h" (horizontal) or "v"(vertical)
+```output_path```: path to output image
+
+Example: ```flip("./img.jpg", "h","./img_flip.jpg")```
