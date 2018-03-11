@@ -78,12 +78,11 @@ Aruguments:
 * ```output_path```: path to output image
 * Example: ```greyscale("./img.jpg", "./img_gs.jpg")```
 
-3.```blur(img_path, output_path)```
+3.```blur(img_path)```
 
 Aruguments:
 
 * ```img_path```: path to input image
-* ```output_path```: path to output image
 * Example: ```blur("./img.jpg", "./img_blur.jpg")```
 
 
