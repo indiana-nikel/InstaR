@@ -19,8 +19,8 @@ knitr::opts_chunk$set(
 blur(image_path) blurs an image.
 
 - Input:
-    - Image_path: string, path for the input image file
+    - Image_path: string, path for the input image file as a .png.
 
-- Output: an image file called "blur.jpg" at the current working directory.
+- Output: an image file called "blur.png" at the current working directory.
 
-- Example: `blur("img1.jpg")`
+- Example: `blur("img.png")`
