@@ -52,11 +52,7 @@ flip <- function(img_path, direction) {
   #Combining 3 RGB channel matrices into a single #D matrix
   output_mat <- array(c(output_r_mat,output_g_mat,output_b_mat),dim = c(output_dim_row,output_dim_col,3))
 
-  #Display flipped image
-  #imageShow(output_mat)
   #Save flipped image
-  #dev.copy(png,filename=output_path);
-  #dev.off ();
   writePNG(output_mat,target="flipped.png")
   return(output_mat)
 }

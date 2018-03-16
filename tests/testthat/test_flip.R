@@ -50,7 +50,6 @@ c7_h_exp <- c(0,1,0)
 c8_h_exp <- c(0,1,0)
 c9_h_exp <- c(1,1,1)
 img_h_mat_exp <- array(c(c1_h_exp,c2_h_exp,c3_h_exp,c4_h_exp,c5_h_exp,c6_h_exp,c7_h_exp,c8_h_exp,c9_h_exp),dim = c(3,3,3))
-#writePNG(img_h_mat_exp,"img_horiz_exp.png")
 
 #Expected 3D (RGB channel)test image for vertical flip
 
@@ -64,7 +63,7 @@ c7_v_exp  <- c(0,0,1)
 c8_v_exp  <- c(1,1,1)
 c9_v_exp  <- c(0,0,1)
 img_v_mat_exp  <- array(c(c1_v_exp ,c2_v_exp ,c3_v_exp ,c4_v_exp ,c5_v_exp ,c6_v_exp ,c7_v_exp ,c8_v_exp ,c9_v_exp),dim = c(3,3,3))
-#writePNG(img_v_mat_exp ,"img_vert_exp.png")
+
 
 #Test function
 
