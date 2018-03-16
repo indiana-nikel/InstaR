@@ -71,5 +71,3 @@ blur <- function(img) {
     }
     writePNG(output, target="blur.png")
 }
-
-blur("Rplot.png")

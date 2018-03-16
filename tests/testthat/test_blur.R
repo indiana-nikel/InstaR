@@ -82,6 +82,6 @@ test_that("Color image is blurred", {
     
   blur("input.png")
   output <- readPNG("blur.png")
-  expect_equal(output, exp_output)
+  expect_equal(output, exp_output, tolerance=1e-5)
 
 })
