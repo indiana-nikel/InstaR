@@ -14,12 +14,6 @@
 
 # This script tests the greyscale() function
 
-# greyscale(input_path, output_path) converts a color image into greyscale
-# Input: input_path: string, path for the input image file
-#        output_path: string, path for the output image file
-# Output: an image file at the specified output path
-
-
 library(png)
 library(InstaR)
 context("Greyscale image")
@@ -48,12 +42,12 @@ exp_output1 <- array(c(c(0.9329412, 0.8619608, 0.7200000,
                          0.7200000, 0.9329412, 0.8619608)),  #B values
                       dim = c(3,3,3))
 
-writePNG(input1, "input1.png")
+writePNG(input1, "test_img/greyscale/input1.png")
 
 test_that("color image converted to greyscale", {
-  greyscale("input1.png",
-            "input1_gs.png")
-  output = readPNG("input1_gs.png")
+  greyscale("test_img/greyscale/input1.png",
+            "test_img/greyscale/input1_gs.png")
+  output = readPNG("test_img/greyscale/input1_gs.png")
   expect_equal(output, exp_output1, tolerance=1e-2)
 })
 
@@ -81,25 +75,36 @@ exp_output2 <- array(c(c(0.9329412, 0.8619608, 0.7200000,
                          0.7200000, 0.9329412, 0.8619608)),  #B values
                      dim = c(3,3,3))
 
-writePNG(input2, "input2.png")
+writePNG(input2, "test_img/greyscale/input2.png")
 
 test_that("greyscale image remains greyscale", {
-  greyscale("input2.png",
-            "input2_gs.png")
-  output = readImage("input2_gs.png")
+  greyscale("test_img/greyscale/input2.png",
+            "test_img/greyscale/input2_gs.png")
+  output = readImage("test_img/greyscale/input2_gs.png")
   expect_equal(output, exp_output2, tolerance=1e-2)
 })
 
+# exception handling
+test_that("In case the input/output is not a string", {
+  expect_error(greyscale(123, "test_img/greyscale/input1_gs.jpg"))
+  expect_error(greyscale("test_img/greyscale/input1.jpg",
+                         c(1,2,3)))
+})
+
+test_that("In case the input/output path does not exist", {
+  expect_error(greyscale("123/greyscale/input1.jpg",
+                         "test_img/greyscale/input1_gs.jpg"))
+  expect_error(greyscale("test_img/greyscale/input2.png",
+                         "123/greyscale/input2_gs.png"))
+})
+
 test_that("In case the input is not an image", {
-  expect_error(greyscale(c(1,2,3), 456))
-  expect_error(greyscale("/tests/testthat/test_img/greyscale/test.pdf",
-                         "/tests/testthat/test_img/greyscale/input1_gs.jpg"))
+  expect_error(greyscale("test_img/greyscale/test.pdf",
+                         "test_img/greyscale/input1_gs.jpg"))
 })
 
 test_that("If user specifies additional arguments, it throws an error", {
-  expect_error(greyscale("/tests/testthat/test_img/greyscale/input1.jpg",
-                         "/tests/testthat/test_img/greyscale/input1_gs.jpg",
+  expect_error(greyscale("test_img/greyscale/input1.jpg",
+                         "test_img/greyscale/input1_gs.jpg",
                          "abc"))
 })
-
-
