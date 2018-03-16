@@ -57,7 +57,7 @@ img_inc <- array(c(c(0, 0, 301),    #R values
                  dim = c(3,1,3))
 
 
-test_that("In case the input is not an image", {
+test_that("In case the input is not a .png image", {
 
     expect_error(blur(list(input1)))
     expect_error(blur("input1.pdf"))
