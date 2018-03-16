@@ -6,13 +6,14 @@
 # March 2018
 # This script is for function flip.
 
-library("OpenImageR")
+#library("OpenImageR")
 library("tableMatrix")
+library("png")
 
-flip <- function(img_path, direction, output_path) {
+flip <- function(img_path, direction) {
 
   #Reading image file as matrix
-  input_mat <- readImage(img_path)
+  input_mat <- readPNG(img_path)
 
   #Creating variables to facilitate division of image into 3 RGB channels
   div1 <- length(input_mat)/3
@@ -52,8 +53,10 @@ flip <- function(img_path, direction, output_path) {
   output_mat <- array(c(output_r_mat,output_g_mat,output_b_mat),dim = c(output_dim_row,output_dim_col,3))
 
   #Display flipped image
-  imageShow(output_mat)
+  #imageShow(output_mat)
   #Save flipped image
-  dev.copy(jpeg,filename=output_path);
-  dev.off ();
+  #dev.copy(png,filename=output_path);
+  #dev.off ();
+  writePNG(output_mat,target="flipped.png")
+  return(output_mat)
 }
