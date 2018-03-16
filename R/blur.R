@@ -16,24 +16,24 @@
 #'
 #' Convert an image into a blurred variant of that image
 #'
-#' @param img string of path for an image file in .jpg, .jpeg, .png, .tiff format
+#' @param img string of path for an image file in .png format
 #'
-#' @return an image file in .jpg, .jpeg, .png, .tiff format
+#' @return an image file in .png format
 #' @export
 #'
 #' @examples
-#' blur("./img.jpg")
+#' blur("img.png")
 
-library("OpenImageR")
+library("png")
 
 blur <- function(img) {
-    
-    input <- readImage(img)
+
+    input <- readPNG(img)
     output <- input[1:(length(input[1,,1])-2), 1:(length(input[,1,1])-2),]
-    
+
     for (i in c(3:length(input[1,,1])-1)) {
         for (j in c(3:length(input[1,,1])-1)) {
-            
+
             R <- c(input[i-1,j-1,1],
             input[i-1,j,1],
             input[i-1,j+1,1],
@@ -43,7 +43,7 @@ blur <- function(img) {
             input[i+1,j-1,1],
             input[i+1,j,1],
             input[i+1,j+1,1])
-            
+
             G <- c(input[i-1,j-1,2],
             input[i-1,j,2],
             input[i-1,j+1,2],
@@ -53,7 +53,7 @@ blur <- function(img) {
             input[i+1,j-1,2],
             input[i+1,j,2],
             input[i+1,j+1,2])
-            
+
             B <- c(input[i-1,j-1,3],
             input[i-1,j,3],
             input[i-1,j+1,3],
@@ -63,11 +63,11 @@ blur <- function(img) {
             input[i+1,j-1,3],
             input[i+1,j,3],
             input[i+1,j+1,3])
-            
+
             output[i-1,j-1,1] <- sum(R)/9
             output[i-1,j-1,2] <- sum(G)/9
             output[i-1,j-1,3] <- sum(B)/9
         }
     }
-    writeImage(output, "blur.jpg")
+    writePNG(output, target="blur.png")
 }

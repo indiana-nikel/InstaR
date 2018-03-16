@@ -14,12 +14,12 @@
 
 # This script tests the blur() function
 
-library(OpenImageR)
+library(png)
 library(InstaR)
 context("Blur image")
 
-# input color: image 1
-input1 <- array(c(c(10, 20, 30, 40, 50,
+# input: color image
+input <- array(c(c(10, 20, 30, 40, 50,
                     20, 30, 40, 50, 10,
                     30, 40, 50, 10, 20,
                     40, 50, 10, 20, 30,
@@ -36,25 +36,25 @@ input1 <- array(c(c(10, 20, 30, 40, 50,
                     250, 210, 220, 230, 240)),  #B values
                 dim = c(5,5,3))
 
-writeImage(input1, "input1.jpg")
+writePNG(input, target="input.png")
 
-# expected output: blur image 1
-exp_output1 <- array(c(c(30, 34.4444, 33.3333,
-                         34.4444, 33.3333, 26.6666,
-                         33.3333, 26.6666, 25.5555),   #R values
-                       c(130, 134.4444, 133.3333,
-                         134.4444, 133.3333, 126.6666,
-                         133.3333, 126.6666, 125.5555),   #G values
-                       c(230, 234.4444, 233.3333,
-                         234.4444, 233.3333, 226.6666,
-                         233.3333, 226.6666, 225.5555)),  #B values
+# expected output: blur image
+exp_output <- array(c(c(0.8862745, 0.8705882, 0.8745098,
+                        0.8705882, 0.8745098, 0.8980392,
+                        0.8745098, 0.8980392, 0.9019608),   #R values
+                      c(0.4941176, 0.4784314, 0.4823529,
+                        0.4784314, 0.4823529, 0.5058824,
+                        0.4823529, 0.5058824, 0.5098039),   #G values
+                      c(0.10196078, 0.08627451, 0.09019608,
+                        0.08627451, 0.09019608, 0.11372549,
+                        0.09019608, 0.11372549, 0.11764706)),  #B values
                      dim = c(3,3,3))
 
 #Define test image with incorrect RGB values
 img_inc <- array(c(c(0, 0, 301),    #R values
                    c(255, 255, 255),    #G values
                    c(0, 0, -9)),    #B values
-                 dim = c(3,3,1))
+                 dim = c(3,1,3))
 
 
 test_that("In case the input is not an image", {
@@ -78,9 +78,10 @@ test_that("If user specifies an additional argument, it throws an error", {
 
 })
 
-test_that("color image blurred", {
-    #blur(input1.jpg)
-  output <- readImage("blur.jpg")
-  expect_equal(output, exp_output1)
+test_that("Color image is blurred", {
+    
+  blur("input.png")
+  output <- readPNG("blur.png")
+  expect_equal(output, exp_output, tolerance=1e-5)
 
 })

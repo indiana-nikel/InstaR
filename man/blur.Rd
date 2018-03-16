@@ -9,7 +9,7 @@ This function blurs an image, making a fuzzy variant with the details obscured.
 \usage{blur(x)}
 
 \arguments{
-  \item{x}{An image file in .jpg,.jpeg,.png,.tiff format}
+  \item{x}{An image file in .png format}
 }
 
 \details{
@@ -25,7 +25,7 @@ A blurred image.
 
 \examples{
 library(InstaR)
-blur("test.jpg")
+blur("img.png")
 }
 
 \keyword{ blur }
