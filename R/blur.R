@@ -26,9 +26,9 @@
 
 library("png")
 
-blur <- function(img) {
+blur <- function(input_path, output_path) {
 
-    input <- readPNG(img)
+    input <- readPNG(input_path)
     output <- input[1:(length(input[1,,1])-2), 1:(length(input[,1,1])-2),]
 
     for (i in c(3:length(input[1,,1])-1)) {
@@ -69,5 +69,5 @@ blur <- function(img) {
             output[i-1,j-1,3] <- sum(B)/9
         }
     }
-    writePNG(output, target="blur.png")
+    writePNG(output, target=output_path)
 }

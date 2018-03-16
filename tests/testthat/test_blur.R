@@ -36,7 +36,7 @@ input <- array(c(c(10, 20, 30, 40, 50,
                     250, 210, 220, 230, 240)),  #B values
                 dim = c(5,5,3))
 
-writePNG(input, target="input.png")
+writePNG(input, target="test_img/blur/input.png")
 
 # expected output: blur image
 exp_output <- array(c(c(0.8862745, 0.8705882, 0.8745098,
@@ -50,38 +50,23 @@ exp_output <- array(c(c(0.8862745, 0.8705882, 0.8745098,
                         0.09019608, 0.11372549, 0.11764706)),  #B values
                      dim = c(3,3,3))
 
-#Define test image with incorrect RGB values
-img_inc <- array(c(c(0, 0, 301),    #R values
-                   c(255, 255, 255),    #G values
-                   c(0, 0, -9)),    #B values
-                 dim = c(3,1,3))
-
-
 test_that("In case the input is not a .png image", {
 
     expect_error(blur(list(input1)))
-    expect_error(blur("input1.pdf"))
+    expect_error(blur("test_img/blur/input.pdf", "test_img/blur/blur.png"))
 
 })
-
-
-test_that("In case the intensity values are not in range of 0-255", {
-
-    expect_error(blur(img_inc))
-
-})
-
 
 test_that("If user specifies an additional argument, it throws an error", {
 
-    expect_error(blur(input1, type="box"))
+    expect_error(blur("test_img/blur/input.png", "test_img/blur/blur.png", "box"))
 
 })
 
 test_that("Color image is blurred", {
     
-  blur("input.png")
-  output <- readPNG("blur.png")
+  blur("test_img/blur/input.png", "test_img/blur/blur.png")
+  output <- readPNG("test_img/blur/blur.png")
   expect_equal(output, exp_output, tolerance=1e-5)
 
 })
