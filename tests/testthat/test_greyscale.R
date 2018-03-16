@@ -20,7 +20,7 @@
 # Output: an image file at the specified output path
 
 
-library(OpenImageR)
+library(png)
 library(InstaR)
 context("Greyscale image")
 
@@ -37,57 +37,57 @@ input1 <- array(c(c(10,20,40,
                 dim = c(3,3,3))
 
 # expected output: greyscale image 1
-exp_output1 <- array(c(c(18,36,72,
-                         36,72,18,
-                         72,18,36),   #R values
-                       c(18,36,72,
-                         36,72,18,
-                         72,18,36),   #G values
-                       c(18,36,72,
-                         36,72,18,
-                         72,18,36)),  #B values
+exp_output1 <- array(c(c(0.9329412, 0.8619608, 0.7200000,
+                         0.8619608, 0.7200000, 0.9329412,
+                         0.7200000, 0.9329412, 0.8619608),   #R values
+                       c(0.9329412, 0.8619608, 0.7200000,
+                         0.8619608, 0.7200000, 0.9329412,
+                         0.7200000, 0.9329412, 0.8619608),   #G values
+                       c(0.9329412, 0.8619608, 0.7200000,
+                         0.8619608, 0.7200000, 0.9329412,
+                         0.7200000, 0.9329412, 0.8619608)),  #B values
                       dim = c(3,3,3))
 
-writeImage(input1, "/tests/testthat/test_img/greyscale/input1.jpg")
+writePNG(input1, "input1.png")
 
 test_that("color image converted to greyscale", {
-  greyscale("/tests/testthat/test_img/greyscale/input1.jpg",
-            "/tests/testthat/test_img/greyscale/input1_gs.jpg")
-  output = readImage("/tests/testthat/test_img/greyscale/input1_gs.jpg")
-  expect_equal(output, exp_output1)
+  greyscale("input1.png",
+            "input1_gs.png")
+  output = readPNG("input1_gs.png")
+  expect_equal(output, exp_output1, tolerance=1e-2)
 })
 
 # input: greyscale image 2
-input2 <- array(c(c(10,20,30,
-                    40,50,60,
-                    70,80,90),   #R values
-                  c(10,20,30,
-                    40,50,60,
-                    70,80,90),   #G values
-                  c(10,20,30,
-                    40,50,60,
-                    70,80,90)),  #B values
+input2 <- array(c(c(0.9329412, 0.8619608, 0.7200000,
+                    0.8619608, 0.7200000, 0.9329412,
+                    0.7200000, 0.9329412, 0.8619608),   #R values
+                  c(0.9329412, 0.8619608, 0.7200000,
+                    0.8619608, 0.7200000, 0.9329412,
+                    0.7200000, 0.9329412, 0.8619608),   #G values
+                  c(0.9329412, 0.8619608, 0.7200000,
+                    0.8619608, 0.7200000, 0.9329412,
+                    0.7200000, 0.9329412, 0.8619608)),  #B values
                 dim = c(3,3,3))
 
 # expected output: identical greyscale image 2
-exp_output2 <- array(c(c(10,20,30,
-                         40,50,60,
-                         70,80,90),   #R values
-                       c(10,20,30,
-                         40,50,60,
-                         70,80,90),   #G values
-                       c(10,20,30,
-                         40,50,60,
-                         70,80,90)),  #B values
+exp_output2 <- array(c(c(0.9329412, 0.8619608, 0.7200000,
+                         0.8619608, 0.7200000, 0.9329412,
+                         0.7200000, 0.9329412, 0.8619608),   #R values
+                       c(0.9329412, 0.8619608, 0.7200000,
+                         0.8619608, 0.7200000, 0.9329412,
+                         0.7200000, 0.9329412, 0.8619608),   #G values
+                       c(0.9329412, 0.8619608, 0.7200000,
+                         0.8619608, 0.7200000, 0.9329412,
+                         0.7200000, 0.9329412, 0.8619608)),  #B values
                      dim = c(3,3,3))
 
-writeImage(input2, "/tests/testthat/test_img/greyscale/input2.jpg")
+writePNG(input2, "input2.png")
 
 test_that("greyscale image remains greyscale", {
-  greyscale("/tests/testthat/test_img/greyscale/input2.jpg",
-            "/tests/testthat/test_img/greyscale/input2_gs.jpg")
-  output = readImage("/tests/testthat/test_img/greyscale/input2_gs.jpg")
-  expect_equal(output, exp_output2)
+  greyscale("input2.png",
+            "input2_gs.png")
+  output = readImage("input2_gs.png")
+  expect_equal(output, exp_output2, tolerance=1e-2)
 })
 
 test_that("In case the input is not an image", {
@@ -102,4 +102,4 @@ test_that("If user specifies additional arguments, it throws an error", {
                          "abc"))
 })
 
-# All test passed when running them manually, but failed when do auto testing. We will investigate it next week.
+

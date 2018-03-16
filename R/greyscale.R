@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 
-library(OpenImageR)
+library(png)
 
 #' Greyscale
 #'
@@ -26,7 +26,7 @@ library(OpenImageR)
 #' @examples
 #' greyscale("./img.jpg", "./img_gs.jpg")
 greyscale <- function(input_path, output_path) {
-  img <- readImage(input_path)
+  img <- readPNG(input_path)
 
   height <- dim(img)[1]
   width <- dim(img)[2]
@@ -47,5 +47,5 @@ greyscale <- function(input_path, output_path) {
     }
   }
 
-  writeImage(img_gs, output_path)
+  writePNG(img_gs, output_path)
 }
