@@ -95,5 +95,3 @@ test_that("Image is flipped correctly", {
 
 })
 
-##Please note: We have not been able to pass our tests of functions successfully due to some
-##issue with readJPEG and writeJPEG. The code workd perfectly fine manually. We hope to fix it soon.
