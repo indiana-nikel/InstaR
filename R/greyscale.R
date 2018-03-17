@@ -26,7 +26,8 @@ library(testit)
 #' @export
 #'
 #' @examples
-#' greyscale("img.png", "img_gs.png")
+#' #' greyscale("img.png", "img_gs.png")
+
 greyscale <- function(input_path, output_path) {
   # exception handling
   assert("Please provide a string as the path for the input image file.", is.character(input_path))

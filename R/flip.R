@@ -6,11 +6,24 @@
 # March 2018
 # This script is for function flip.
 
-#require("tableMatrix")
-#require("png")
-#require("testit")
+library(tableMatrix)
+library(png)
+library(testit)
 
-flip <- function(input_path, direction,output_path) {
+#' Flip
+#'
+#' @param input_path string, path for the input png file
+#' @param direction string, direction of flip
+#' @param output_path string, path for the output png file
+#'
+#' @return a png file at the specified output path
+#' @export
+#'
+#' @examples
+#' #' flip("img.png", "h", "flipped.png")
+
+
+flip <- function(input_path, direction, output_path) {
 
   # exception handling
   assert("Please provide a string as the path for the input image file.", is.character(input_path))

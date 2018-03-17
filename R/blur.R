@@ -12,23 +12,22 @@
 # See the License for the specific language governing permissions and limitations under the License.
 
 
+library(png)
+library(testit)
+
 #' Blur
 #'
-#' Convert an image into a blurred variant of that image
+#' @param input_path string, path for the input png file
+#' @param output_path string, path for the output png file
 #'
-#' @param img string of path for an image file in .png format
-#'
-#' @return an image file in .png format
+#' @return a png file at the specified output path
 #' @export
 #'
 #' @examples
-#' blur("img.png")
-
-#require(png)
-#require(testit)
+#' #' blur("input.png", "blur.png")
 
 blur <- function(input_path, output_path) {
-    
+
     assert("Please provide a string as the path for the input image file.", is.character(input_path))
     assert("Please provide a string as the path for the output image file.", is.character(output_path))
 

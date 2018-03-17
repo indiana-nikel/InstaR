@@ -1,5 +1,5 @@
 ---
-title: "Blue"
+title: "Blur"
 author: "Indiana Nikel"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -16,11 +16,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-blur(image_path) blurs an image.
+blur(image_path, output_path) blurs an image.
 
 - Input:
-    - Image_path: string, path for the input image file as a .png.
+    - input_path: string, path for the input image file as a .png.
+    - output_path: string, path for the output image file as a .png.
 
-- Output: an image file called "blur.png" at the current working directory.
+- Output: an image file called "blur.png" at the output path.
 
-- Example: `blur("img.png")`
+- Example: `blur("img.png", "blur.png")`

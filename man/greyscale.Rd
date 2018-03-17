@@ -18,5 +18,5 @@ a png file at the specified output path
 Convert a color image into greyscale
 }
 \examples{
-greyscale("img.png", "img_gs.png")
+#' greyscale("img.png", "img_gs.png")
 }
