@@ -90,19 +90,16 @@ test_that("Image is flipped correctly", {
 test_that("In case the input is not a PNG image",{
 
   expect_error(flip("test_img/flip/img_horiz_input.pdf", "h","test_img/flip/flipped_horiz.png"))
-
 })
 
 test_that("If user specifies an additional argument, it throws an error", {
 
   expect_error(flip("test_img/flip/img_horiz_input.png","h", "test_img/flip/flipped_horiz.png", "extra"))
-
 })
 
 test_that("If user gives an invalid flip direction, it throws an error", {
 
   expect_error(flip("test_img/flip/img_horiz_input.png","s", "test_img/flip/flipped_horiz.png"))
-
 })
 
 test_that("In case the input/output is not a string", {
