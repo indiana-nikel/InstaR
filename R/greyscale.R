@@ -17,15 +17,19 @@ library(png)
 #'
 #' Convert a color image into greyscale
 #'
-#' @param input_path string, path for the input image file
-#' @param output_path string, path for the output image file
+#' @param input_path string, path for the input png file
+#' @param output_path string, path for the output png file
 #'
-#' @return an image file at the specified output path
+#' @return a png file at the specified output path
 #' @export
 #'
 #' @examples
-#' greyscale("./img.jpg", "./img_gs.jpg")
+#' greyscale("img.png", "img_gs.png")
 greyscale <- function(input_path, output_path) {
+  # exception handling
+  assert("Please provide a string as the path for the input image file.", is.character(input_path))
+  assert("Please provide a string as the path for the output image file.", is.character(output_path))
+
   img <- readPNG(input_path)
 
   height <- dim(img)[1]
