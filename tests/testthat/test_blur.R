@@ -14,9 +14,6 @@
 
 # This script tests the blur() function
 
-library(png)
-library(InstaR)
-library(testit)
 context("Blur image")
 
 # input: color image

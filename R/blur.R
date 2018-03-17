@@ -24,8 +24,8 @@
 #' @examples
 #' blur("img.png")
 
-library(png)
-library(testit)
+#require(png)
+#require(testit)
 
 blur <- function(input_path, output_path) {
     

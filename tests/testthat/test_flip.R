@@ -6,9 +6,6 @@
 # March 2018
 # This script tests the function from flip.R.
 
-library("InstaR")
-library("png")
-library("testit")
 context('Flip image')
 
 #Define 3D (RGB channel)test image for horizontal flip
