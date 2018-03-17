@@ -80,7 +80,7 @@ writePNG(input2, "test_img/greyscale/input2.png")
 test_that("greyscale image remains greyscale", {
   greyscale("test_img/greyscale/input2.png",
             "test_img/greyscale/input2_gs.png")
-  output = readImage("test_img/greyscale/input2_gs.png")
+  output = readPNG("test_img/greyscale/input2_gs.png")
   expect_equal(output, exp_output2, tolerance=1e-2)
 })
 
