@@ -24,9 +24,13 @@
 #' @examples
 #' blur("img.png")
 
-library("png")
+library(png)
+library(testit)
 
 blur <- function(input_path, output_path) {
+    
+    assert("Please provide a string as the path for the input image file.", is.character(input_path))
+    assert("Please provide a string as the path for the output image file.", is.character(output_path))
 
     input <- readPNG(input_path)
     output <- input[1:(length(input[1,,1])-2), 1:(length(input[,1,1])-2),]
