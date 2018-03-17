@@ -16,6 +16,7 @@
 
 library(png)
 library(InstaR)
+library(testit)
 context("Blur image")
 
 # input: color image
@@ -69,4 +70,21 @@ test_that("Color image is blurred", {
   output <- readPNG("test_img/blur/blur.png")
   expect_equal(output, exp_output, tolerance=1e-5)
 
+})
+
+test_that("In case the input/output is not a string", {
+    
+    expect_error(blur(123, "test_img/blur/blur.png"))
+    expect_error(blur("test_img/blur/input.png", c(1,2,3)))
+})
+
+test_that("In case the input/output path does not exist", {
+    
+    expect_error(blur("123/blur/input.png", "test_img/blur/blur.png"))
+    expect_error(blur("test_img/blur/input.png", "123/blur/blur.png"))
+})
+
+test_that("In case the input is not an image", {
+    
+    expect_error(blur("test_img/blur/test.pdf","test_img/blur/blur.png"))
 })
