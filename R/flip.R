@@ -9,11 +9,17 @@
 #library("OpenImageR")
 library("tableMatrix")
 library("png")
+library("testit")
 
-flip <- function(img_path, direction) {
+flip <- function(input_path, direction,output_path) {
+
+  # exception handling
+  assert("Please provide a string as the path for the input image file.", is.character(input_path))
+  assert("Please provide a string as the path for the output image file.", is.character(output_path))
+  assert("Invalid input for flip direction", direction %in% c("h","v"))
 
   #Reading image file as matrix
-  input_mat <- readPNG(img_path)
+  input_mat <- readPNG(input_path)
 
   #Creating variables to facilitate division of image into 3 RGB channels
   div1 <- length(input_mat)/3
@@ -45,14 +51,11 @@ flip <- function(img_path, direction) {
     output_r_mat <- input_r_mat[dim(input_r_mat)[1L]:1,]
     output_g_mat <- input_g_mat[dim(input_g_mat)[1L]:1,]
     output_b_mat <- input_b_mat[dim(input_b_mat)[1L]:1,]
-  } else {
-    break
   }
 
   #Combining 3 RGB channel matrices into a single #D matrix
   output_mat <- array(c(output_r_mat,output_g_mat,output_b_mat),dim = c(output_dim_row,output_dim_col,3))
 
   #Save flipped image
-  writePNG(output_mat,target="flipped.png")
-  return(output_mat)
+  writePNG(output_mat,output_path)
 }

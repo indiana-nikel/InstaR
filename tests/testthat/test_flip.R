@@ -8,6 +8,7 @@
 
 library("InstaR")
 library("png")
+library("testit")
 context('Flip image')
 
 #Define 3D (RGB channel)test image for horizontal flip
@@ -22,7 +23,7 @@ c7_h <- c(1,1,1)
 c8_h <- c(0,1,0)
 c9_h <- c(0,1,0)
 img_h_mat <- array(c(c1_h,c2_h,c3_h,c4_h,c5_h,c6_h,c7_h,c8_h,c9_h),dim = c(3,3,3))
-writePNG(img_h_mat,"img_horiz.png")
+writePNG(img_h_mat,target="test_img/flip/img_horiz_input.png")
 
 #Define 3D (RGB channel)test image for vertical flip
 
@@ -36,7 +37,7 @@ c7_v <- c(1,0,0)
 c8_v <- c(1,1,1)
 c9_v <- c(1,0,0)
 img_v_mat <- array(c(c1_v,c2_v,c3_v,c4_v,c5_v,c6_v,c7_v,c8_v,c9_v),dim = c(3,3,3))
-writePNG(img_v_mat,"img_vert.png")
+writePNG(img_v_mat,target="test_img/flip/img_vert_input.png")
 
 #Expected 3D (RGB channel)test image for horizontal flip
 
@@ -50,6 +51,7 @@ c7_h_exp <- c(0,1,0)
 c8_h_exp <- c(0,1,0)
 c9_h_exp <- c(1,1,1)
 img_h_mat_exp <- array(c(c1_h_exp,c2_h_exp,c3_h_exp,c4_h_exp,c5_h_exp,c6_h_exp,c7_h_exp,c8_h_exp,c9_h_exp),dim = c(3,3,3))
+
 
 #Expected 3D (RGB channel)test image for vertical flip
 
@@ -68,30 +70,54 @@ img_v_mat_exp  <- array(c(c1_v_exp ,c2_v_exp ,c3_v_exp ,c4_v_exp ,c5_v_exp ,c6_v
 #Test function
 
 #Flip image horizontally using function
-flip_horiz <- flip("img_horiz.png", "h")
+flip_horiz <- flip("test_img/flip/img_horiz_input.png", "h","test_img/flip/flipped_horiz.png")
 
 #Flip image vertically using function
-flip_vert <- flip("img_vert.png", "v")
-
-test_that("In case the input is not an image", {
-
-  expect_error(flip(list(img_h), "h"))
-  expect_error(flip("img_h.pdf", "h"))
-
-})
-
-
-test_that("If user specifies something other than 'h' or 'v', it throws an error", {
-
-  expect_error(flip("img_horiz.png","s"))
-
-})
+flip_vert <- flip("test_img/flip/img_vert_input.png", "v","test_img/flip/flipped_vert.png")
 
 
 test_that("Image is flipped correctly", {
 
-  expect_equal(flip("img_horiz.png", "h"),img_h_mat_exp)
-  expect_equal(flip("img_vert.png", "v"),img_v_mat_exp)
+  output = readPNG("test_img/flip/flipped_horiz.png")
+  expect_equal(output,img_h_mat_exp)
+
+  output = readPNG("test_img/flip/flipped_vert.png")
+  expect_equal(output,img_v_mat_exp)
 
 })
+
+
+test_that("In case the input is not a PNG image",{
+
+  expect_error(flip("test_img/flip/img_horiz_input.pdf", "h","test_img/flip/flipped_horiz.png"))
+})
+
+test_that("If user specifies an additional argument, it throws an error", {
+
+  expect_error(flip("test_img/flip/img_horiz_input.png","h", "test_img/flip/flipped_horiz.png", "extra"))
+})
+
+test_that("If user gives an invalid flip direction, it throws an error", {
+
+  expect_error(flip("test_img/flip/img_horiz_input.png","s", "test_img/flip/flipped_horiz.png"))
+})
+
+test_that("In case the input/output is not a string", {
+
+  expect_error(flip(123,"h","test_img/flip/flipped_horiz.png"))
+  expect_error(flip("test_img/flip/img_horiz_input.png","h", c(1,2,3)))
+})
+
+test_that("In case the input/output path does not exist", {
+
+  expect_error(blur("123/flip/input.png","h", "test_img/flip/flipped_horiz.png"))
+  expect_error(blur("test_img/flip/img_horiz_input.png","h", "123/flip/flip.png"))
+})
+
+test_that("In case the input is not an image", {
+
+  expect_error(blur("test_img/flip/img_horiz_input.pdf","h","test_img/flip/flipped_horiz.png"))
+})
+
+
 
