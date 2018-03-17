@@ -6,10 +6,9 @@
 # March 2018
 # This script is for function flip.
 
-#library("OpenImageR")
-library("tableMatrix")
-library("png")
-library("testit")
+#require("tableMatrix")
+#require("png")
+#require("testit")
 
 flip <- function(input_path, direction,output_path) {
 

@@ -14,8 +14,6 @@
 
 # This script tests the greyscale() function
 
-library(png)
-library(InstaR)
 context("Greyscale image")
 
 # input color: image 1

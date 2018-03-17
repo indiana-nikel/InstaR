@@ -4,17 +4,19 @@
 \alias{greyscale}
 \title{Greyscale}
 \usage{
-greyscale(img)
+greyscale(input_path, output_path)
 }
 \arguments{
-\item{img}{string of path for an image file in .jpg, .jpeg, .png, .tiff format}
+\item{input_path}{string, path for the input png file}
+
+\item{output_path}{string, path for the output png file}
 }
 \value{
-an image file in .jpg, .jpeg, .png, .tiff format
+a png file at the specified output path
 }
 \description{
 Convert a color image into greyscale
 }
 \examples{
-greyscale("./img.jpg")
+greyscale("img.png", "img_gs.png")
 }
