@@ -32,9 +32,9 @@ blur <- function(input_path, output_path) {
     assert("Please provide a string as the path for the output image file.", is.character(output_path))
 
     input <- readPNG(input_path)
-    output <- input[1:(length(input[1,,1])-2), 1:(length(input[,1,1])-2),]
+    output <- input[1:(length(input[,1,1])-2), 1:(length(input[1,,1])-2),]
 
-    for (i in c(3:length(input[1,,1])-1)) {
+    for (i in c(3:length(input[,1,1])-1)) {
         for (j in c(3:length(input[1,,1])-1)) {
 
             R <- c(input[i-1,j-1,1],
